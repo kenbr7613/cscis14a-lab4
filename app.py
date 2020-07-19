@@ -6,9 +6,13 @@ from os import environ
 load_dotenv('.env')
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/homework_users_db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/homework_users_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = environ.get('SECRET_KEY')
+app.config.update(
+    SECRET_KEY = environ.get('SECRET_KEY')
+)
 Db.init_app(app)
 
 
