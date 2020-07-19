@@ -25,6 +25,10 @@ class Bars {
     scY = d3.scaleLinear()
             .range([this.gH, 0]);
     histogram = d3.histogram();
+
+
+
+
     yAxis = d3.axisLeft().ticks(5);
     xAxis = d3.axisBottom();
 
@@ -139,6 +143,28 @@ class Bars {
                             .attr('x', Math.floor(w * 0.1))
                             .attr('fill', 'rgba(0, 0, 128, 1)');
 
+                        // Add count as text
+                        g.append('text')
+                            .style('transform', `translate(${w / 2.0}px, -2px)`)
+                            .attr("text-anchor", "middle")
+                            .text(d.length)
+                            .attr("class", i)
+                            .attr('opacity', '.0');
+
+                        g.on('mouseover', function(d,i) {
+                            d3.select(this).selectAll('text')
+                                .transition()
+                               .duration('50')
+                               .attr('opacity', '1');
+                        });
+
+                        g.on('mouseout', function(d,i) {
+                            d3.select(this).selectAll('text')
+                                .transition()
+                               .duration('50')
+                               .attr('opacity', '0');
+                        });
+                            
                     })
             );
 

@@ -15,8 +15,8 @@ d3.json('/load_data').then(d => {
 
     // Instantiate
     bars = new Bars(data, 'vis1');
-    // donut = new Donut(data, 'vis2');
-    // scatter = new Scatter(data, 'vis3');
+    donut = new Donut(data, 'vis2');
+    scatter = new Scatter(data, 'vis3');
 
 
 }).catch(err => console.log(err));
